@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'messages/create'
+  get 'chat/new'
+  get 'chat/create'
+  get 'chat/show'
+  get 'exercises/index'
+  get 'exercises/show'
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   devise_for :users
