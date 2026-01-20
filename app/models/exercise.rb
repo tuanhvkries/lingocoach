@@ -1,3 +1,5 @@
 class Exercise < ApplicationRecord
-  validates :name, :content, :language, presence: true
+  has_many :chats, dependent: :destroy
+
+  validates :name, :content, :language, :system_prompt, presence: true
 end
