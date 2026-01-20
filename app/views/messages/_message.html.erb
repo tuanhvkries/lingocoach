@@ -1,0 +1,7 @@
+<% is_user = message.respond_to?(:role) ? (message.role == "user") : message.respond_to?(:from_user) ? message.from_user : false %>
+
+<div style="padding: 12px; border: 1px solid #eee; border-radius: 8px; background: <%= is_user ? "#f7f7ff" : "#f7fff7" %>;">
+  <strong><%= is_user ? "You" : "Assistant" %>:</strong>
+  <div style="white-space: pre-wrap;"><%= message.content %></div>
+  <small style="color:#666;"><%= l(message.created_at, format: :short) %></small>
+</div>
