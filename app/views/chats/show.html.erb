@@ -1,0 +1,48 @@
+<h1>Practice Session #<%= @chat.id %></h1>
+
+<p>
+  Exercise:
+  <%= link_to @chat.exercise.title, exercise_path(@chat.exercise) %>
+</p>
+
+<p>
+  Created: <%= l(@chat.created_at, format: :long) %>
+</p>
+
+<hr>
+
+<h2>Conversation</h2>
+
+<% if @chat.messages.blank? %>
+  <p>No messages yet.</p>
+<% else %>
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <% @chat.messages.order(:created_at).each do |message| %>
+      <% is_user = message.respond_to?(:role) ? (message.role == "user") : message.respond_to?(:from_user) ? message.from_user : false %>
+
+      <div style="padding: 12px; border: 1px solid #eee; border-radius: 8px; background: <%= is_user ? "#f7f7ff" : "#f7fff7" %>;">
+        <strong><%= is_user ? "You" : "Assistant" %>:</strong>
+        <div style="white-space: pre-wrap;"><%= message.content %></div>
+
+        <small style="color:#666;"><%= l(message.created_at, format: :short) %></small>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<hr>
+
+<h2>Ask a follow-up</h2>
+
+<%= form_with url: chat_messages_path(@chat), method: :post, data: { turbo: false } do |f| %>
+  <div style="margin-bottom: 12px;">
+    <%= f.label :content, "Your message" %><br>
+    <%= f.text_area :content, rows: 4, style: "width: 100%;", name: "message[content]" %>
+  </div>
+
+  <%= f.submit "Send", class: "btn btn-primary" %>
+<% end %>
+
+<hr>
+
+<%= link_to "Back to exercises", exercises_path %>

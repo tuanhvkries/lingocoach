@@ -1,0 +1,17 @@
+<h1>Your past sessions</h1>
+
+<% if @chats.blank? %>
+  <p>No sessions yet. Start with an exercise.</p>
+  <%= link_to "Go to exercises", exercises_path, class: "btn btn-primary" %>
+<% else %>
+  <ul>
+    <% @chats.each do |chat| %>
+      <li style="margin-bottom: 8px;">
+        <%= link_to "Session ##{chat.id}", chat_path(chat) %>
+        <small style="color:#666;">
+          — <%= chat.exercise.title %> — <%= l(chat.created_at, format: :short) %>
+        </small>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
