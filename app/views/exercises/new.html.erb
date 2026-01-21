@@ -1,0 +1,12 @@
+<div class="container mt-4">
+  <h1 class="mb-4">New Exercise</h1>
+
+  <%= simple_form_for @exercise do |f| %>
+    <%= f.input :name, placeholder: "English — Past tense" %>
+    <%= f.input :language, placeholder: "en / fr / es" %>
+    <%= f.input :content, as: :text, input_html: { rows: 5 }, placeholder: "Instructions the learner will see..." %>
+    <%= f.input :system_prompt, as: :text, input_html: { rows: 6 }, placeholder: "How the AI should behave for this exercise..." %>
+
+    <%= f.button :submit, "Create exercise", class: "btn btn-primary" %>
+  <% end %>
+</div>
