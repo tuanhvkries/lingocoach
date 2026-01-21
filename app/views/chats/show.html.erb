@@ -1,48 +1,27 @@
-<h1>Practice Session #<%= @chat.id %></h1>
+<%= link_to "← #{@chat.exercise.name}", exercise_path(@chat.exercise) %>
 
-<p>
-  Exercise:
-  <%= link_to @chat.exercise.title, exercise_path(@chat.exercise) %>
-</p>
+<h1 id="chat_title" class="mt-3"><%= @chat.title %></h1>
 
-<p>
-  Created: <%= l(@chat.created_at, format: :long) %>
-</p>
-
-<hr>
-
-<h2>Conversation</h2>
-
-<% if @chat.messages.blank? %>
-  <p>No messages yet.</p>
-<% else %>
-  <div style="display: flex; flex-direction: column; gap: 12px;">
-    <% @chat.messages.order(:created_at).each do |message| %>
-      <% is_user = message.respond_to?(:role) ? (message.role == "user") : message.respond_to?(:from_user) ? message.from_user : false %>
-
-      <div style="padding: 12px; border: 1px solid #eee; border-radius: 8px; background: <%= is_user ? "#f7f7ff" : "#f7fff7" %>;">
-        <strong><%= is_user ? "You" : "Assistant" %>:</strong>
-        <div style="white-space: pre-wrap;"><%= message.content %></div>
-
-        <small style="color:#666;"><%= l(message.created_at, format: :short) %></small>
+<div id="messages" class="mt-4">
+  <% @chat.messages.each do |message| %>
+    <% if message.role == "user" %>
+      <div class="d-flex justify-content-end mb-2">
+        <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
+          <%= simple_format(message.content) %>
+        </div>
+      </div>
+    <% else %>
+      <div class="d-flex justify-content-start mb-5">
+        <div class="px-3 pb-0 pt-3">
+          <%= simple_format(message.content) %>
+        </div>
       </div>
     <% end %>
-  </div>
-<% end %>
-
-<hr>
-
-<h2>Ask a follow-up</h2>
-
-<%= form_with url: chat_messages_path(@chat), method: :post, data: { turbo: false } do |f| %>
-  <div style="margin-bottom: 12px;">
-    <%= f.label :content, "Your message" %><br>
-    <%= f.text_area :content, rows: 4, style: "width: 100%;", name: "message[content]" %>
-  </div>
-
-  <%= f.submit "Send", class: "btn btn-primary" %>
-<% end %>
-
-<hr>
-
-<%= link_to "Back to exercises", exercises_path %>
+  <% end %>
+</div>
+<div id="new_message_container" class="mt-4">
+  <%= simple_form_for [@chat, @message] do |f| %>
+    <%= f.input :content, label: "Write your text", required: true, placeholder: "Paste or write your sentence/paragraph here..." %>
+    <%= f.button :submit, "Ask LLM", class: "btn btn-primary" %>
+  <% end %>
+</div>

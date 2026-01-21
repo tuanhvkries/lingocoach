@@ -1,19 +1,18 @@
-<h1>Exercises</h1>
-<p>Select an exercise to practice.</p>
+<div class="container mt-4">
+  <h2 class="mb-4">Exercises</h2>
 
-<% if @exercises.blank? %>
-  <p>No exercises yet.</p>
-<% else %>
-  <ul>
+  <div class="row">
     <% @exercises.each do |exercise| %>
-      <li style="margin-bottom: 8px;">
-        <%= link_to exercise.title, exercise_path(exercise) %>
-        <% if exercise.respond_to?(:language) && exercise.language.present? %>
-          <small style="color:#666;">(<%= exercise.language %>)</small>
-        <% end %>
-      </li>
+      <div class="col-md-4 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= exercise.name %></h5>
+            <span class="badge bg-secondary"><%= exercise.language.upcase %></span>
+            <p class="mt-2"><%= truncate(exercise.content, length: 90) %></p>
+            <%= link_to "Open", exercise_path(exercise), class: "btn btn-outline-primary btn-sm" %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
-<% end %>
-
-<%= link_to 'New Exercise', new_exercise_path, class: 'btn btn-primary' %>
+  </div>
+</div>

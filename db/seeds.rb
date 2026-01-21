@@ -1,29 +1,30 @@
-# puts "Cleaning exercises..."
+puts "Cleaning database..."
+Message.destroy_all
+Chat.destroy_all
+Exercise.destroy_all
+User.destroy_all
 
-# Message.destroy_all
-# Chat.destroy_all
-# Exercise.destroy_all
-# User.destroy_all
+puts "Creating demo user..."
+user = User.create!(
+  email: "demo@lingocoach.com",
+  password: "password",
+  first_name: "Demo",
+  last_name: "User"
+)
 
-# puts "Creating exercises..."
+puts "Creating exercises..."
+Exercise.create!(
+  name: "English – Past tense",
+  language: "en",
+  content: "Write 4–6 sentences about what you did last weekend.",
+  system_prompt: "Focus on verb tense corrections and keep explanations simple."
+)
 
-# User.create!(
-#   email: "demo@lingocoach.com",
-#   password: "password",
-#   password_confirmation: "password"
-#   first_name: "Demo",
-#   last_name: "User"
-# )
-# Exercise.create!(
-#   name: "Ordering food (EN)",
-#   language: "en",
-#   system_prompt: "You are a friendly English coach. Correct the text and explain the errors.",
-#   content: "Practice ordering food in a restaurant."
-# )
-# Exercise.create!(
-#   name: "Present yourself in French",
-#   language: "fr",
-#   system_prompt: "You are a friendly French coach. Correct the text and explain the errors.",
-#   content: "Practice introducing yourself in French."
-# )
-# puts "Done!"
+Exercise.create!(
+  name: "French – Ordering at a café",
+  language: "fr",
+  content: "Write what you would say to order a coffee and ask for the price.",
+  system_prompt: "Correct politeness and common beginner mistakes."
+)
+
+puts "🌱 Seeds done"

@@ -1,2 +1,10 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container text-center mt-5">
+  <h1 class="mb-3">LingoCoach</h1>
+  <p class="lead mb-4">Practice languages. Get corrected. Understand why.</p>
+
+  <% if user_signed_in? %>
+    <%= link_to "Start practicing", exercises_path, class: "btn btn-primary btn-lg" %>
+  <% else %>
+    <%= link_to "Sign in to start practicing", new_user_session_path, class: "btn btn-primary btn-lg" %>
+  <% end %>
+</div>

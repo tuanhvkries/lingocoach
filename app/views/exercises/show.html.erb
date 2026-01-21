@@ -1,52 +1,27 @@
-<h1><%= @exercise.title %></h1>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h1><%= @exercise.name %></h1>
+      <p class="text-muted"><%= @exercise.language.upcase %></p>
+      <%= simple_format(@exercise.content) %>
+    </div>
 
-<% if @exercise.respond_to?(:description) && @exercise.description.present? %>
-  <p><%= @exercise.description %></p>
-<% end %>
+    <div class="col-md-3">
+      <h2>Chats</h2>
 
-<hr>
+      <div class="mb-4">
+        <% if @chats.any? %>
+          <ul class="list-unstyled">
+            <% @chats.each do |chat| %>
+              <li class="mb-2"><%= link_to chat.title, chat_path(chat) %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-muted">There are no chats yet.</p>
+        <% end %>
+      </div>
 
-<h2>Submit your text</h2>
-
-<% unless user_signed_in? %>
-  <p style="color:#666;">
-    You can try without an account, but your history might not be saved.
-  </p>
-<% end %>
-
-<%= form_with url: exercise_chats_path(@exercise), method: :post, data: { turbo: false } do |f| %>
-  <div style="margin-bottom: 12px;">
-    <%= f.label :language, "Language" %><br>
-    <%= f.select :language, [["English", "en"], ["German", "de"], ["French", "fr"]], {}, { name: "chat[language]" } %>
+      <%= button_to "New chat", exercise_chats_path(@exercise), method: :post, class: "btn btn-primary w-100" %>
+    </div>
   </div>
-
-  <div style="margin-bottom: 12px;">
-    <%= f.label :content, "Your text" %><br>
-    <%= f.text_area :content, rows: 10, style: "width: 100%;", name: "chat[content]" %>
-  </div>
-
-  <%= f.submit "Get correction", class: "btn btn-primary" %>
-<% end %>
-
-<hr>
-
-<h2>Previous sessions for this exercise</h2>
-
-<% if user_signed_in? %>
-  <% if @chats.present? %>
-    <ul>
-      <% @chats.each do |chat| %>
-        <li>
-          <%= link_to "Session ##{chat.id}", chat_path(chat) %>
-          <small style="color:#666;">— <%= l(chat.created_at, format: :short) %></small>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>No sessions yet.</p>
-  <% end %>
-<% else %>
-  <p><%= link_to "Log in", new_user_session_path %> to see your history.</p>
-<% end %>
-
-<%= link_to 'Back to Exercises', exercises_path, class: 'btn btn-secondary' %>
+</div>
