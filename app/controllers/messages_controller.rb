@@ -21,7 +21,7 @@ class MessagesController < ApplicationController
 
     if @message.save
       ruby_llm_chat = RubyLLM.chat
-      response = ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+      response = ruby_llm_chat.with_instructions(@chat.exercise.system_prompt).ask(@message.content)
 
       Message.create!(role: "assistant", content: response.content, chat: @chat)
 
