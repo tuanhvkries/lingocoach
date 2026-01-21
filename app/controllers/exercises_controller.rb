@@ -5,5 +5,6 @@ class ExercisesController < ApplicationController
 
   def show
     @exercise = Exercise.find(params[:id])
+    @chats = @exercise.chats.where(user: current_user)
   end
 end
