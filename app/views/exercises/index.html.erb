@@ -1,6 +1,8 @@
 <div class="container mt-4">
   <h2 class="mb-4">Exercises</h2>
 
+<%= link_to "New Exercise", new_exercise_path, class: "btn btn-primary mb-3" %>
+
   <div class="row">
     <% @exercises.each do |exercise| %>
       <div class="col-md-4 mb-3">
