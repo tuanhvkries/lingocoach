@@ -1,37 +1,49 @@
 class MessagesController < ApplicationController
-SYSTEM_PROMPT = "You are a Language Coach.\n\nI am a student at the First Class Language Academy, learning how to speak English and other languages.\n\nWhen I type in a text, first of all detect the language I am using and correct any mistakes that I make in the text.\n\nAnswer concisely in Markdown with the error a short explanation of no more than 15 words and the correction."
-def create
-  @chat = current_user.chats.find(params[:chat_id])
-  @exercise = @chat.exercise
+  SYSTEM_PROMPT = <<~PROMPT
+    You are LingoCoach, a helpful language tutor.
 
-  @message = Message.new(message_params)
-  @message.chat = @chat
-  @message.role = "user"
+    The user is practicing a language.
 
-  if @message.save
-  ruby_llm_chat = RubyLLM.chat
-  response = ruby_llm_chat.with_instructions(SYSTEM_PROMPT).ask(@message.content)
-  Message.create(role: "assistant", content: response.content, chat: @chat)
+    Task:
+    1) Provide a corrected version of the user's text.
+    2) Explain the main corrections simply (max 5 bullet points).
+    Tone: beginner-friendly, encouraging and concise.
+    Output in Markdown.
+  PROMPT
 
-  @chat.generate_title_from_first_message
-  
-  redirect_to chat_path(@chat)
-  else
-    render "chats/show", status: :unprocessable_entity
+  def create
+    @chat = current_user.chats.find(params[:chat_id])
+    @exercise = @chat.exercise
+
+    @message = Message.new(message_params)
+    @message.chat = @chat
+    @message.role = "user"
+
+    if @message.save
+      ruby_llm_chat = RubyLLM.chat
+      response = ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+
+      Message.create!(role: "assistant", content: response.content, chat: @chat)
+
+      @chat.generate_title_from_first_message
+
+      redirect_to chat_path(@chat)
+    else
+      render "chats/show", status: :unprocessable_entity
+    end
   end
-end
 
-private
+  private
 
-def exercise_context
-  "Here is the context of the challenge: #{@exercise.content}."
-end
+  def message_params
+    params.require(:message).permit(:content)
+  end
 
-def instructions
-  [SYSTEM_PROMPT, exercise_context, @exercise.system_prompt]
-  .compact.join("\n\n")
-end
+  def exercise_context
+    "Here is the exercise context:\n\n#{@exercise.content}"
+  end
 
-def message_params
-  params.require(:message).permit(:content)
+  def instructions
+    [SYSTEM_PROMPT, exercise_context, @exercise.system_prompt].compact.join("\n\n")
+  end
 end
