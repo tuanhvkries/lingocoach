@@ -1,27 +1,11 @@
 <%= link_to "← #{@chat.exercise.name}", exercise_path(@chat.exercise) %>
 
-<h1 id="chat_title" class="mt-3"><%= @chat.title %></h1>
+<h1 id="chat_title"><%= @chat.title %></h1>
 
-<div id="messages" class="mt-4">
-  <% @chat.messages.each do |message| %>
-    <% if message.role == "user" %>
-      <div class="d-flex justify-content-end mb-2">
-        <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
-          <%= simple_format(message.content) %>
-        </div>
-      </div>
-    <% else %>
-      <div class="d-flex justify-content-start mb-5">
-        <div class="px-3 pb-0 pt-3">
-          <%= simple_format(message.content) %>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+<div id="messages">
+  <%= render "messages/messages", messages: @chat.messages %>
 </div>
-<div id="new_message_container" class="mt-4">
-  <%= simple_form_for [@chat, @message] do |f| %>
-    <%= f.input :content, label: "Write your text", required: true, placeholder: "Paste or write your sentence/paragraph here..." %>
-    <%= f.button :submit, "Ask LLM", class: "btn btn-primary" %>
-  <% end %>
+
+<div id="new_message_container">
+  <%= render "messages/form", chat: @chat, message: @message %>
 </div>
