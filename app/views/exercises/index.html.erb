@@ -6,7 +6,7 @@
   <div class="row">
     <% @exercises.each do |exercise| %>
       <div class="col-md-4 mb-3">
-        <div class="card h-100">
+        <div class="excercise_card">
           <div class="card-body">
             <h5 class="card-title"><%= exercise.name %></h5>
             <span class="badge bg-secondary"><%= exercise.language.upcase %></span>

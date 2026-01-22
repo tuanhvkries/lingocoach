@@ -8,14 +8,17 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
   </head>
 
 <body>
-  <div class="d-flex">
-    <%= render "shared/sidebar" %>
+  <div class = "background_body">
+    <div class="d-flex">
+      <%= render "shared/sidebar" %>
 
-    <main class="flex-grow-1 p-4">
-      <%= yield %>
-    </main>
+      <main class="flex-grow-1 p-4">
+        <%= yield %>
+      </main>
+    </div>
   </div>
 </body>
