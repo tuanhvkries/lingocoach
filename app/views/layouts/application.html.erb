@@ -10,13 +10,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= render "shared/navbar" %>
+<body>
+  <div class="d-flex">
+    <%= render "shared/sidebar" %>
 
-    <main class="py-4">
-      <div class="container">
-        <%= yield %>
-      </div>
+    <main class="flex-grow-1 p-4">
+      <%= yield %>
     </main>
-  </body>
-</html>
+  </div>
+</body>
