@@ -1,0 +1,26 @@
+<div class="d-flex flex-column p-3 border-end vh-100" style="width: 220px;">
+  <h5 class="mb-4">LingoCoach</h5>
+
+  <% if user_signed_in? %>
+    <ul class="nav nav-pills flex-column gap-2">
+      <li class="nav-item">
+        <%= link_to "Home", root_path, class: "nav-link" %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to "Exercises", exercises_path, class: "nav-link" %>
+      </li>
+    </ul>
+
+    <hr>
+
+    <%= button_to "Log out",
+          destroy_user_session_path,
+          method: :delete,
+          class: "btn btn-outline-danger btn-sm w-100",
+          form: { data: { turbo: false } } %>
+  <% else %>
+    <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-primary w-100 mb-2" %>
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary w-100" %>
+  <% end %>
+</div>
