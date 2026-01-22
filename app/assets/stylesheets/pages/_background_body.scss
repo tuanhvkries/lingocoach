@@ -1,0 +1,8 @@
+.background_body {
+background: radial-gradient(
+    circle at top,     /* Kreis oben zentriert */
+    #EAF5F6 0%,      /* hell in der Mitte */
+    #EDEDED 55%,     /* dunkler nach außen */
+    #D6ECF1 100%
+  );
+}
