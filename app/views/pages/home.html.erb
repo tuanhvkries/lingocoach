@@ -1,10 +1,23 @@
-<div class="container text-center mt-5">
-  <h1 class="mb-3">LingoCoach</h1>
-  <p class="lead mb-4">Practice languages. Get corrected. Understand why.</p>
-
-  <% if user_signed_in? %>
-    <%= link_to "Start practicing", exercises_path, class: "btn btn-primary btn-lg" %>
-  <% else %>
-    <%= link_to "Sign in to start practicing", new_user_session_path, class: "btn btn-primary btn-lg" %>
-  <% end %>
+<div class="container">
+  <div class="content-container">
+    <h1 class="headline">Master any language with LingoCoach</h1>
+    <p class="subline">
+      AI powered and personalized learning.<br>
+      Practice languages. Get corrected. Understand why.
+    </p>
+   
+    <div class="btn-container">
+      <% if user_signed_in? %>
+        <%= link_to "Start practicing", exercises_path, class: "btn-first" %>
+      <% else %>
+        <%= link_to "Sign in to start practicing", new_user_session_path, class: "btn-first" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="image-container">
+    <%= image_tag "section_1.png", alt: "LingoCoach Illustration" %>
+  </div>
+  <div class="mt-auto">
+    <%= render "shared/footer" %>
+  </div>
 </div>

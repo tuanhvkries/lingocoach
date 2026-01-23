@@ -1,0 +1,31 @@
+.footer-transparent {
+  max-height: 80px;
+  position: fixed;
+  bottom: 0;
+  left: 280px;
+  right: 0;
+  border-top: rgba(255, 255, 255, 0.2) 1px solid;
+  padding: 16px;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: left;
+  gap: 8px;
+}
+
+.footer-transparent .nav-link,
+.footer-transparent span {
+  pointer-events: auto;     /* Macht nur die Links/Text im Footer wieder anklickbar */
+}
+
+/* Falls Sie eine Sidebar nutzen, sollte der Footer links Platz lassen */
+@media (min-width: 768px) {
+  .footer-transparent {
+    padding-left: 80px; /* Hier den Wert der Sidebar-Breite eintragen */
+  }
+}
+
+.nav-item {
+  margin-right: 16px;
+  display: inline;
+}

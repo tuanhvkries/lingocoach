@@ -17,7 +17,7 @@ class ExercisesController < ApplicationController
     if @exercise.save
       redirect_to exercise_path(@exercise), notice: "Exercise created!"
     else
-      render :new, status: unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

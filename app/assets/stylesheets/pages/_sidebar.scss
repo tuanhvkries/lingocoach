@@ -1,6 +1,14 @@
 .sidebar {
-  /* Hintergrund lieber so, damit nur der Hintergrund transparent ist,
-     nicht der ganze Inhalt wie bei opacity: 0.95 */
+
+  /* fixed sidebar */
+  position: fixed;   /* Fixiert die Sidebar am Browserfenster */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;      /* Die gewünschte Breite Ihrer Sidebar */
+  height: 100vh;     /* Volle Bildschirmhöhe */
+  overflow-y: auto;  /* Erlaubt Scrollen innerhalb der Sidebar, falls das Menü sehr lang ist */
+  /* -- */
   background-color: rgba(255, 255, 255, 0.4); /* 0.2 = 20% Deckkraft */
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
   height: 100vh;
@@ -21,12 +29,84 @@
   height: 56px;
 }
 
+
 .btn-logout {
-  background-color: #d6d6d6;
-  border-radius: 8px;
-  padding: 4px;
+  border-radius: 999px;
+  width: 200px;
+  padding: 8px;
+  margin-left: 16px;
+  margin-top: 16px;
   color: #5e5e5e;
-  border: none;
+  border: #aaaaaa 1px solid;
   text-decoration: none;
-  width: 160px;
+    /* ... Ihre bestehenden Styles ... */
+  display: inline-flex; /* Sorgt dafür, dass Icon und Text sauber nebeneinander stehen */
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Abstand zwischen Icon und Text */
+}
+
+
+.btn-logout:hover {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.09);
+  transition: 300ms;
+}
+
+.btn-login {
+  border-radius: 999px;
+  width: 200px;
+  padding: 8px;
+  margin-top: 16px;
+  margin-left: 16px;
+  color: #5e5e5e;
+  border: #aaaaaa 1px solid;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  /* Hier Ihre bestehenden Styles wie border-radius, width etc. einfügen */
+}
+/*
+.btn-login::before {
+  content: "\f090";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}*/
+
+
+.btn-login:hover {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.09);
+  transition: 300ms;
+}
+
+.btn-signup {
+  border-radius: 999px;
+  width: 200px;
+  padding: 8px;
+  margin-left: 16px;
+  margin-top: 16px;
+  color: #5e5e5e;
+  border: #aaaaaa 1px solid;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  /* Hier Ihre bestehenden Styles wie border-radius, width etc. einfügen */
+}
+
+/* Signup Icon (User Plus)
+.btn-signup::before {
+  content: "\f234";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}*/
+
+.btn-signup:hover {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.09);
+  transition: 300ms;
 }

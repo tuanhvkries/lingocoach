@@ -1,18 +1,22 @@
-<div class="sidebar" style="width: 220px;">
-  <h5 class="mb-4">LingoCoach</h5>
+<div class="sidebar" style="width: 280px;">
+  <div class="logobar" style="margin-bottom: 60px;">
+    <%= image_tag "logo.png", width: 240, alt: "LingoCoach Logo" %>
+  </div>
+
+  <hr style="opacity: 0.1;">
 
   <% if user_signed_in? %>
     <ul class="nav nav-pills flex-column gap-2">
       <li class="nav-item">
         <%= link_to "Home", root_path, class: "nav-link" %>
       </li>
-
+      <hr style="opacity: 0.1;">
       <li class="nav-item">
         <%= link_to "Exercises", exercises_path, class: "nav-link" %>
       </li>
     </ul>
 
-    <hr>
+    <hr style="opacity: 0.1;">
 
     <%= button_to "Log out",
           destroy_user_session_path,
@@ -20,7 +24,7 @@
           class: "btn-logout",
           form: { data: { turbo: false } } %>
   <% else %>
-    <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-primary w-100 mb-2" %>
-    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary w-100" %>
+      <%= link_to "Log in", new_user_session_path, class: "btn-login" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn-signup" %>
   <% end %>
 </div>

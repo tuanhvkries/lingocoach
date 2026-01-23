@@ -1,0 +1,10 @@
+.fixed-corner-image {
+  position: absolute;  /* Nimmt das Bild aus dem Textfluss, sodass nichts verschoben wird */
+  top: 0;             /* Exakt oben */
+  right: 0;           /* Exakt rechts */
+  width: 300px;       /* Oder Ihre gewünschte Größe */
+  height: auto;
+  z-index: -1;        /* Schiebt das Bild hinter den gesamten Inhalt (Sidebar, Main etc.) */
+  opacity: 0.5;       /* Macht es halbtransparent, damit man den Text noch lesen kann */
+  pointer-events: none; /* Verhindert, dass man das Bild versehentlich anklickt */
+}

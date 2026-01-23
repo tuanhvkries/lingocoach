@@ -11,7 +11,7 @@
 
   </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
   <div class = "background_body">
     <div class="d-flex">
       <%= render "shared/sidebar" %>
@@ -20,5 +20,8 @@
         <%= yield %>
       </main>
     </div>
+  </div>
+    <div class="mt-auto">
+    <%= render "shared/footer" %>
   </div>
 </body>

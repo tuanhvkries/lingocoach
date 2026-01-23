@@ -1,11 +1,18 @@
 <%= link_to "← #{@chat.exercise.name}", exercise_path(@chat.exercise) %>
-
-<h1 id="chat_title"><%= @chat.title %></h1>
-
-<div id="messages">
-  <%= render "messages/messages", messages: @chat.messages %>
+<div class="exercises-header">
+  <h2 id="chat_title"><%= @chat.title %></h2>
 </div>
 
-<div id="new_message_container">
-  <%= render "messages/form", chat: @chat, message: @message %>
+<div class="chat-container">
+  <div class="messages-container">
+    <div id="messages">
+      <%= render "messages/messages", messages: @chat.messages %>
+    </div>
+  </div>
+
+  <div class="messages-container">
+    <div id="new_message_container">
+      <%= render "messages/form", chat: @chat, message: @message %>
+    </div>
+  </div>
 </div>
