@@ -1,20 +1,26 @@
-<div class="container mt-4">
+<div class="exercises-header">
   <h2 class="mb-4">Exercises</h2>
+</div>
 
-<%= link_to "New Exercise", new_exercise_path, class: "btn btn-primary mb-3" %>
-
+<div class="exercises-container">
   <div class="row">
     <% @exercises.each do |exercise| %>
       <div class="col-md-4 mb-3">
         <div class="excercise_card">
           <div class="card-body">
-            <h5 class="card-title"><%= exercise.name %></h5>
+            <div class="card-title">
+                <%= exercise.name %>
+            </div>
             <span class="badge bg-secondary"><%= exercise.language.upcase %></span>
             <p class="mt-2"><%= truncate(exercise.content, length: 90) %></p>
-            <%= link_to "Open", exercise_path(exercise), class: "btn btn-outline-primary btn-sm" %>
+            <%= link_to "Open", exercise_path(exercise), class: "btn-second" %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
+</div>
+
+<div class="exercises-footer">
+  <%= link_to "New Exercise", new_exercise_path, class: "btn-first" %>
 </div>
