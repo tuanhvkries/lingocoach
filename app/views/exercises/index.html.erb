@@ -22,7 +22,11 @@
                   loading: "lazy" %>
 
             <p class="mt-2"><%= truncate(exercise.content, length: 90) %></p>
-            <%= link_to "Open", exercise_path(exercise), class: "btn-second" %>
+            <%= link_to "Open", exercise_path(exercise), class: "btn-second me-2" %>
+            <%= button_to "Delete", exercise_path(exercise),
+              method: :delete,
+              data: { turbo_confirm: "Delete '#{exercise.name}'?" },
+              class: "btn-second" %>
           </div>
         </div>
       </div>

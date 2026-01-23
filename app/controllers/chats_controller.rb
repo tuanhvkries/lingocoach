@@ -4,20 +4,31 @@ class ChatsController < ApplicationController
   #   @chats = Chat.new(exercise: @exercise)
   # end
 
-  def create
-    @exercise = Exercise.find(params[:exercise_id])
+def create
+  @exercise = Exercise.find(params[:exercise_id])
 
-    @chat = Chat.new(title: Chat::DEFAULT_TITLE)
-    @chat.exercise = @exercise
-    @chat.user = current_user
+  @chat = Chat.new(title: Chat::DEFAULT_TITLE)
+  @chat.exercise = @exercise
+  @chat.user = current_user
 
+  respond_to do |format|
     if @chat.save
-      redirect_to chat_path(@chat)
+      format.turbo_stream
+      format.html { redirect_to exercise_path(@exercise) }
     else
       @chats = @exercise.chats.where(user: current_user)
-      render "exercises/show", status: :unprocessable_entity
+      format.html { render "exercises/show", status: :unprocessable_entity }
     end
   end
+end
+
+  def destroy
+    @chat = Chat.find(params[:id])
+    exercise = @chat.exercise
+    @chat.destroy
+    redirect_to exercise_path(exercise), notice: "Chat deleted.", status: :see_other
+  end
+
 
   def show
     @chat = Chat.find(params[:id])
