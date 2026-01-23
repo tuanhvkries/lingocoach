@@ -110,3 +110,12 @@
   box-shadow: 0 4px 10px rgba(15, 23, 42, 0.09);
   transition: 300ms;
 }
+
+.main-content {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+}
+
+body {
+  overflow-x: hidden;
+}
