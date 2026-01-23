@@ -4,8 +4,29 @@
 
 <div class="exercises-new-container">
   <%= simple_form_for @exercise do |f| %>
+
     <%= f.input :name, placeholder: "English — Past tense" %>
-    <%= f.input :language, placeholder: "en / fr / es" %>
+
+    <div data-controller="flag" class="mb-3">
+      <label class="form-label">Language *</label>
+
+      <div class="d-flex align-items-center gap-2">
+        <%= f.text_field :language,
+              class: "form-control",
+              placeholder: "en / fr / es",
+              data: {
+                flag_target: "input",
+                action: "input->flag#update"
+              } %>
+
+        <img data-flag-target="img"
+             width="32"
+             height="24"
+             class="rounded"
+             style="display:none;" />
+      </div>
+    </div>
+
     <%= f.input :content, as: :text, input_html: { rows: 5 }, placeholder: "Instructions the learner will see..." %>
     <%= f.input :system_prompt, as: :text, input_html: { rows: 6 }, placeholder: "How the AI should behave for this exercise..." %>
 
