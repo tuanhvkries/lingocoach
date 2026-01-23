@@ -9,9 +9,18 @@
         <div class="excercise_card">
           <div class="card-body">
             <div class="card-title">
-                <%= exercise.name %>
+              <%= exercise.name %>
             </div>
-            <span class="badge bg-secondary"><%= exercise.language.upcase %></span>
+
+            <% lang = exercise.language.to_s.downcase.strip %>
+            <% code = (lang == "en" ? "gb" : lang) %>
+
+            <%= image_tag "https://flagcdn.com/w40/#{code}.png",
+                  width: 32, height: 24,
+                  alt: code,
+                  class: "me-2 rounded",
+                  loading: "lazy" %>
+
             <p class="mt-2"><%= truncate(exercise.content, length: 90) %></p>
             <%= link_to "Open", exercise_path(exercise), class: "btn-second me-2" %>
             <%= button_to "Delete", exercise_path(exercise),
