@@ -8,20 +8,19 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
   </head>
 
-<body class="d-flex flex-column min-vh-100">
-  <div class = "background_body">
-    <div class="d-flex">
-      <%= render "shared/sidebar" %>
+  <body class="d-flex flex-column min-vh-100">
+    <div class="background_body flex-grow-1">
+      <div class="d-flex">
+        <%= render "shared/sidebar" %>
 
-      <main class="flex-grow-1 p-4">
-        <%= yield %>
-      </main>
+        <main class="main-content flex-grow-1 p-4">
+          <%= yield %>
+        </main>
+      </div>
     </div>
-  </div>
-    <div class="mt-auto">
+
     <%= render "shared/footer" %>
-  </div>
-</body>
+  </body>
+</html>

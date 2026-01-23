@@ -1,57 +1,36 @@
-// Specific CSS for your home-page
+/* =========================
+   Buttons
+========================= */
+
 .btn-first {
-  background: linear-gradient(
-    45deg,
-    #1866B1 0%,
-    #36B086 100%,
-  );
+  background: linear-gradient(45deg, #1866B1 0%, #36B086 100%);
   border-radius: 999px;
   padding: 16px 24px;
   color: #ffffff;
   font-size: 16px;
   text-decoration: none;
-  max-width: fit-content
+  max-width: fit-content;
+  display: inline-block;
 }
 
-/*
-.btn-first::before {
-  content: "\f090";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-}*/
-
-
 .btn-first:hover {
-   background: linear-gradient(
-    45deg,
-    #4399EC 0%,
-    #2AFFB6 100%,
-  );
+  background: linear-gradient(45deg, #4399EC 0%, #2AFFB6 100%);
   box-shadow: 0 4px 10px rgba(15, 23, 42, 0.4);
   transition: 300ms;
 }
 
-
 .btn-second {
   border-radius: 999px;
-  padding: 8px;
+  padding: 8px 20px;
   margin-bottom: 16px;
   min-width: 200px;
   color: #1A4782;
-  border: #1A4782 1px solid;
+  border: 1px solid #1A4782;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  /* Hier Ihre bestehenden Styles wie border-radius, width etc. einfügen */
 }
-/*
-.btn-login::before {
-  content: "\f090";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-}*/
-
 
 .btn-second:hover {
   background-color: #ffffff;
@@ -59,24 +38,31 @@
   transition: 300ms;
 }
 
-
+/* =========================
+   Layout - Home page
+========================= */
 
 .container {
   display: flex;
   justify-content: center;
-  align-items: top;
+  align-items: flex-start;
   margin-top: 80px;
   padding: 20px;
   gap: 40px;
-  }
+}
 
+/* Responsive layout */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column; /* Stapelt die inneren Divs untereinander */
-    height: auto;           /* Verhindert, dass der Inhalt bei Stapelung oben/unten abgeschnitten wird */
-    padding: 20px;          /* Reduziert das Padding, damit mehr Platz für den Inhalt bleibt */
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
   }
 }
+
+/* =========================
+   Text content
+========================= */
 
 .content-container {
   text-align: left;
@@ -94,7 +80,7 @@
 .subline {
   font-size: 1.2rem;
   margin-bottom: 10px;
-  color: #646464ff;
+  color: #646464;
 }
 
 .btn-container {
@@ -103,24 +89,26 @@
   gap: 20px;
 }
 
+/* =========================
+   Image container (FIXED )
+========================= */
+
 .image-container {
   width: 600px;
   height: 400px;
-  image-rendering: optimizeQuality;
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
-  /* Zentrierung des Bildes im Container */
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fa; /* Optional: Hintergrundfarbe für leere Ränder */
+  background-color: #f8f9fa;
 }
 
+/* Make the image fill the container nicely */
 .image-container img {
-
-  /* Bewirkt, dass das Bild komplett sichtbar bleibt (Proportional skaliert) */
-  object-fit: contain;
-  /* Zentriert das Bild innerhalb seines eigenen Inhaltsbereichs */
-  object-position: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /*  key fix */
+  object-position: center; /* center the image */
 }

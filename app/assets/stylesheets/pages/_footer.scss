@@ -1,31 +1,50 @@
 .footer-transparent {
-  max-height: 80px;
-  position: fixed;
-  bottom: 0;
-  left: 280px;
-  right: 0;
-  border-top: rgba(255, 255, 255, 0.2) 1px solid;
-  padding: 16px;
-  background: transparent;
-  display: inline-flex;
+  margin-left: 280px; /* largeur sidebar */
+  width: calc(100% - 280px);
+
+  padding: 14px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+
+  /* glass / transparent */
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  display: flex;
   align-items: center;
-  justify-content: left;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 16px;
+
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 14px;
 }
 
-.footer-transparent .nav-link,
-.footer-transparent span {
-  pointer-events: auto;     /* Macht nur die Links/Text im Footer wieder anklickbar */
+.footer-copy {
+  margin: 0;
 }
 
-/* Falls Sie eine Sidebar nutzen, sollte der Footer links Platz lassen */
-@media (min-width: 768px) {
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  gap: 16px;
+}
+
+.footer-link {
+  text-decoration: underline;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.footer-link:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* Mobile : pas de sidebar => footer full width */
+@media (max-width: 767px) {
   .footer-transparent {
-    padding-left: 80px; /* Hier den Wert der Sidebar-Breite eintragen */
+    margin-left: 0;
+    width: 100%;
   }
-}
-
-.nav-item {
-  margin-right: 16px;
-  display: inline;
 }
