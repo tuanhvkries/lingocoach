@@ -2,12 +2,14 @@
   display: flex;
   flex-direction: column;
   height: calc(100vh - 160px); // adjust if your header/nav is taller/shorter
+  border-radius: 16px !important;
 }
 
 .chat-messages {
   height: 60vh;
   overflow-y: auto;
   padding: 16px;
+  border-radius: 16px !important;
 }
 
 .chat-input {
@@ -16,20 +18,23 @@
   background: #f9fafb;
   padding: 12px;
   margin-top: 12px;
-  border-radius: 16px;
+  border-radius: 16px !important;
 }
 
 .chats-section {
   width: 100%;
   max-width: none;
   margin: 0 auto;
+  border-radius: 16px !important;
 }
 
 .chat-accordion-body {
   padding: 16px;
+  border-radius: 16px !important;
 }
 
 .chat-accordion-body turbo-frame {
   display: block;
   width: 100%;
+  border-radius: 16px !important;
 }

@@ -11,8 +11,8 @@
               rows: 1
             } %>
     </div>
-    <%= f.button :submit, "Ask LLM",
-          class: "btn btn-primary px-3" %>
+    <%= f.button :submit, "Ask LingoCoach",
+          class: "btn-second" %>
     <%= button_to "🗑", exercise_chat_path(chat.exercise, chat),
           method: :delete,
           data: { turbo_confirm: "Delete '#{chat.title}'?" },
