@@ -1,9 +1,22 @@
-<%= simple_form_for [chat, message] do |f| %>
-  <%= f.input :content,
-        label: "Write your text",
-        required: true,
-        placeholder: "Write here…",
-        input_html: { data: { chat_target: "input" } } %>
-
-  <%= f.button :submit, "Ask LLM", class: "btn btn-primary" %>
-<% end %>
+<div class="input-group gap-2">
+  <%= simple_form_for [chat, message] do |f| %>
+    <div class="flex-grow-1">
+      <%= f.input :content,
+            label: false,
+            required: true,
+            placeholder: "Write here…",
+            input_html: {
+              data: { chat_target: "input" },
+              class: "form-control rounded-3",
+              rows: 1
+            } %>
+    </div>
+    <%= f.button :submit, "Ask LingoCoach",
+          class: "btn-second" %>
+    <%= button_to "🗑", exercise_chat_path(chat.exercise, chat),
+          method: :delete,
+          data: { turbo_confirm: "Delete '#{chat.title}'?" },
+          class: "btn btn-outline-secondary px-2",
+          form: { class: "d-inline" } %>
+  <% end %>
+</div>

@@ -1,21 +1,21 @@
-<div class="exercises-container">
+<div class="exercises-show-container">
   <!-- Exercise header -->
-  <div class="exercises-header mb-4">
+  <div class="exercises-header">
     <h2 class="mb-2"><%= @exercise.name %></h2>
     <p class="text-muted"><%= @exercise.language.upcase %></p>
     <%= simple_format(@exercise.content) %>
   </div>
 
-  <hr class="my-4">
+
 
   <!-- Chats header -->
-  <div class="chats-header d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
-    <h3 class="mb-0">Chats</h3>
+  <div class="chats-header">
+    <h2 lass="mb-2">Chats</h2>
 
     <%= button_to "New chat",
           exercise_chats_path(@exercise),
           method: :post,
-          class: "btn btn-outline-primary btn-sm",
+          class: "btn-second",
           form: { data: { turbo_stream: true } } %>
   </div>
 
