@@ -1,4 +1,9 @@
 <%= simple_form_for [chat, message] do |f| %>
-  <%= f.input :content, label: "Write your text", required: true, placeholder: "Write here…" %>
-  <%= f.button :submit, "Ask LingoCoach", class: "btn-second" %>
+  <%= f.input :content,
+        label: "Write your text",
+        required: true,
+        placeholder: "Write here…",
+        input_html: { data: { chat_target: "input" } } %>
+
+  <%= f.button :submit, "Ask LLM", class: "btn btn-primary" %>
 <% end %>
