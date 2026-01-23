@@ -1,6 +1,8 @@
 <div class="sidebar" style="width: 280px;">
   <div class="logobar" style="margin-bottom: 60px;">
-    <%= image_tag "logo.png", width: 240, alt: "LingoCoach Logo" %>
+      <%= link_to root_path, title: "Home" do %>
+      <%= image_tag "logo.png", width: 240, alt: "LingoCoach Logo", class: "img-fluid" %>
+    <% end %>
   </div>
 
   <hr style="opacity: 0.1;">
