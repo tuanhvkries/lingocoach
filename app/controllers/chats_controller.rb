@@ -19,6 +19,14 @@ class ChatsController < ApplicationController
     end
   end
 
+  def destroy
+    @chat = Chat.find(params[:id])
+    exercise = @chat.exercise
+    @chat.destroy
+    redirect_to exercise_path(exercise), notice: "Chat deleted.", status: :see_other
+  end
+
+
   def show
     @chat = Chat.find(params[:id])
 

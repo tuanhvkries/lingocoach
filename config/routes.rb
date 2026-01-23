@@ -9,11 +9,11 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   devise_for :users
 
-  resources :exercises, only: [:index, :show, :new, :create] do
-    resources :chats, only: [:create]
+  resources :exercises, only: [:index, :show, :new, :create, :destroy] do
+    resources :chats, only: [:create, :destroy]
   end
 
-  resources :chats, only: [:index, :show] do
+  resources :chats, only: [:index, :show, :destroy] do
     resources :messages, only: [:create]
   end
 
