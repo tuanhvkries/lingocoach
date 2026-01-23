@@ -15,47 +15,57 @@
     <%= button_to "New chat",
           exercise_chats_path(@exercise),
           method: :post,
-          class: "btn btn-outline-primary btn-sm" %>
+          class: "btn btn-outline-primary btn-sm",
+          form: { data: { turbo_stream: true } } %>
   </div>
 
   <!-- Chats list -->
   <% if @chats.any? %>
     <div class="chats-section">
       <div class="accordion w-100" id="chatsAccordion">
-        <% @chats.each do |chat| %>
-          <div class="accordion-item chat-item">
-            <h2 class="accordion-header">
-              <button
-                class="accordion-button collapsed chat-toggle"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#chat_<%= chat.id %>"
-                aria-controls="chat_<%= chat.id %>"
-              >
-                <%= chat.title %>
-              </button>
-            </h2>
-
-            <div
-              id="chat_<%= chat.id %>"
-              class="accordion-collapse collapse"
-              data-bs-parent="#chatsAccordion"
-            >
-              <div class="accordion-body chat-accordion-body">
-                <turbo-frame
-                  id="chat_frame_<%= chat.id %>"
-                  src="<%= chat_path(chat) %>"
-                  loading="lazy"
+        <div id="chats_list">
+          <% @chats.each do |chat| %>
+            <div class="accordion-item chat-item" id="chat_item_<%= chat.id %>">
+              <h2 class="accordion-header" id="heading_<%= chat.id %>">
+                <button
+                  class="accordion-button collapsed chat-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#chat_<%= chat.id %>"
+                  aria-expanded="false"
+                  aria-controls="chat_<%= chat.id %>"
                 >
-                  <div class="text-muted small">Loading chat…</div>
-                </turbo-frame>
+                  <%= chat.title %>
+                </button>
+              </h2>
+
+              <div
+                id="chat_<%= chat.id %>"
+                class="accordion-collapse collapse"
+                aria-labelledby="heading_<%= chat.id %>"
+                data-bs-parent="#chatsAccordion"
+              >
+                <div class="accordion-body chat-accordion-body">
+                  <turbo-frame
+                    id="chat_frame_<%= chat.id %>"
+                    src="<%= chat_path(chat) %>"
+                    loading="lazy"
+                  >
+                    <div class="text-muted small">Loading chat…</div>
+                  </turbo-frame>
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   <% else %>
-    <p class="text-muted">There are no chats yet.</p>
+    <div class="chats-section">
+      <div class="accordion w-100" id="chatsAccordion">
+        <div id="chats_list"></div>
+      </div>
+      <p class="text-muted mt-2" id="no_chats_message">There are no chats yet.</p>
+    </div>
   <% end %>
 </div>

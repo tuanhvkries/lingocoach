@@ -1,0 +1,20 @@
+<%= turbo_stream.prepend "chats_list",
+      partial: "chats/chat_item",
+      locals: { chat: @chat } %>
+
+<%= turbo_stream.remove "no_chats_message" %>
+
+<%= turbo_stream.after "chat_item_#{@chat.id}" do %>
+  <script>
+    (() => {
+      const el = document.getElementById("chat_<%= @chat.id %>");
+      if (!el) return;
+
+      const collapse = bootstrap.Collapse.getOrCreateInstance(el);
+      collapse.show();
+
+      document.getElementById("chat_item_<%= @chat.id %>")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    })();
+  </script>
+<% end %>
