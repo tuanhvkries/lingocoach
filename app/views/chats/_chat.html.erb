@@ -1,0 +1,8 @@
+<div class="chat">
+  <% chat.messages.each do |message| %>
+    <p>
+      <strong><%= message.role %>:</strong>
+      <%= message.content %>
+    </p>
+  <% end %>
+</div>

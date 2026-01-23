@@ -20,7 +20,10 @@ class ChatsController < ApplicationController
   end
 
   def show
-    @chat = current_user.chats.find(params[:id])
-    @message = Message.new
+    @chat = Chat.find(params[:id])
+
+    if turbo_frame_request?
+      render :show, layout: false
+    end
   end
 end
