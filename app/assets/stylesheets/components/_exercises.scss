@@ -1,0 +1,32 @@
+.exercise-content {
+  max-width: 700px;
+  margin-bottom: 32px;
+}
+
+.chats-section {
+  max-width: 1000px;   // or 100%
+  margin: 0 auto;
+}
+
+.accordion-button {
+  font-size: 1rem;
+  padding: 16px 20px;
+}
+
+.accordion-body {
+  padding: 20px;
+}
+
+.chat-message {
+  max-width: 75%;
+  margin-bottom: 8px;
+}
+
+.chat-message.user {
+  margin-left: auto;
+}
+
+.chat-message.assistant {
+  margin-right: auto;
+  margin-bottom: 16px;
+}

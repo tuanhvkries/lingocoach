@@ -18,3 +18,18 @@
   margin-top: 12px;
   border-radius: 16px;
 }
+
+.chats-section {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+}
+
+.chat-accordion-body {
+  padding: 16px;
+}
+
+.chat-accordion-body turbo-frame {
+  display: block;
+  width: 100%;
+}

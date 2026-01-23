@@ -1,20 +1,19 @@
-<%= link_to "← #{@chat.exercise.name}", exercise_path(@chat.exercise) %>
+<turbo-frame id="chat_frame_<%= @chat.id %>">
+  <div class="chat-wrapper">
+    <div class="exercises-header">
+      <h3 id="chat_title"><%= @chat.title %></h3>
+    </div>
 
-<div class="exercises-header">
-  <h2 id="chat_title"><%= @chat.title %></h2>
-</div>
+    <div
+      id="messages"
+      class="chat-messages"
+      data-controller="chat"
+    >
+      <%= render "messages/messages", messages: @chat.messages %>
+    </div>
 
-<div class="chat-container">
-  <div
-    id="messages"
-    class="chat-messages"
-    data-controller="chat"
-    data-chat-target="messages"
-  >
-    <%= render "messages/messages", messages: @chat.messages %>
+    <div id="new_message_container" class="chat-input">
+      <%= render "messages/form", chat: @chat, message: (@message || @chat.messages.build) %>
+    </div>
   </div>
-
-  <div id="new_message_container" class="chat-input">
-    <%= render "messages/form", chat: @chat, message: @message %>
-  </div>
-</div>
+</turbo-frame>

@@ -1,32 +1,61 @@
-<div class="exercises-header">
-  <h2 class="mb-4"><%= @exercise.name %><</h2>
-</div>
-
 <div class="exercises-container">
-  <div class="row">
-    <div class="col">
-      <p class="text-muted"><%= @exercise.language.upcase %></p>
-      <%= simple_format(@exercise.content) %>
-    </div>
+  <!-- Exercise header -->
+  <div class="exercises-header mb-4">
+    <h2 class="mb-2"><%= @exercise.name %></h2>
+    <p class="text-muted"><%= @exercise.language.upcase %></p>
+    <%= simple_format(@exercise.content) %>
+  </div>
 
+  <hr class="my-4">
 
+  <!-- Chats header -->
+  <div class="chats-header d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <h3 class="mb-0">Chats</h3>
 
-    <div class="col-md-3">
-      <h2>Chats</h2>
+    <%= button_to "New chat",
+          exercise_chats_path(@exercise),
+          method: :post,
+          class: "btn btn-outline-primary btn-sm" %>
+  </div>
 
-      <div class="mb-4">
-        <% if @chats.any? %>
-          <ul class="list-unstyled">
-            <% @chats.each do |chat| %>
-              <li class="mb-2"><%= link_to chat.title, chat_path(chat) %></li>
-            <% end %>
-          </ul>
-        <% else %>
-          <p class="text-muted">There are no chats yet.</p>
+  <!-- Chats list -->
+  <% if @chats.any? %>
+    <div class="chats-section">
+      <div class="accordion w-100" id="chatsAccordion">
+        <% @chats.each do |chat| %>
+          <div class="accordion-item chat-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed chat-toggle"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#chat_<%= chat.id %>"
+                aria-controls="chat_<%= chat.id %>"
+              >
+                <%= chat.title %>
+              </button>
+            </h2>
+
+            <div
+              id="chat_<%= chat.id %>"
+              class="accordion-collapse collapse"
+              data-bs-parent="#chatsAccordion"
+            >
+              <div class="accordion-body chat-accordion-body">
+                <turbo-frame
+                  id="chat_frame_<%= chat.id %>"
+                  src="<%= chat_path(chat) %>"
+                  loading="lazy"
+                >
+                  <div class="text-muted small">Loading chat…</div>
+                </turbo-frame>
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
-
-      <%= button_to "New chat", exercise_chats_path(@exercise), method: :post, class: "btn-second" %>
     </div>
-  </div>
+  <% else %>
+    <p class="text-muted">There are no chats yet.</p>
+  <% end %>
 </div>
